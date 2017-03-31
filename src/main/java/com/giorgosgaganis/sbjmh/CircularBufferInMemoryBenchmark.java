@@ -31,7 +31,6 @@
 
 package com.giorgosgaganis.sbjmh;
 
-import java.util.Collections;
 import java.util.Date;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -39,26 +38,21 @@ import org.openjdk.jmh.annotations.Group;
 import org.openjdk.jmh.annotations.GroupThreads;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.runner.Runner;
-import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.boot.actuate.trace.NonBlockingCircularBuffer;
-import org.springframework.boot.actuate.trace.NonBlockingInMemoryTraceRepository;
 import org.springframework.boot.actuate.trace.Trace;
 
 public class CircularBufferInMemoryBenchmark {
 
     @State(Scope.Group)
     public static class BenchmarkState {
-        NonBlockingCircularBuffer<Trace> inMemoryTraceRepository = new NonBlockingCircularBuffer<>(2000);
+        NonBlockingCircularBuffer<Trace> inMemoryTraceRepository = new NonBlockingCircularBuffer<>(MainBenchmark.CAPACITY);
     }
 
     @Benchmark
     @Group("g")
     @GroupThreads(3)
     public void testAdd(BenchmarkState benchmarkState) {
-        Trace trace = new Trace(new Date(), Collections.<String, Object>singletonMap("foo", "bar"));
+        Trace trace = new Trace(new Date(), MainBenchmark.TRACE_INFO);
         benchmarkState.inMemoryTraceRepository.add(trace);
     }
 

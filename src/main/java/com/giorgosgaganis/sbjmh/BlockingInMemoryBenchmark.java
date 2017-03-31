@@ -31,8 +31,6 @@
 
 package com.giorgosgaganis.sbjmh;
 
-import java.util.Collections;
-
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Group;
 import org.openjdk.jmh.annotations.GroupThreads;
@@ -47,7 +45,7 @@ public class BlockingInMemoryBenchmark {
         InMemoryTraceRepository inMemoryTraceRepository = new InMemoryTraceRepository();
 
         public BenchmarkState() {
-            inMemoryTraceRepository.setCapacity(2000);
+            inMemoryTraceRepository.setCapacity(MainBenchmark.CAPACITY);
         }
     }
 
@@ -56,7 +54,7 @@ public class BlockingInMemoryBenchmark {
     @Group("g")
     @GroupThreads(3)
     public void testAdd(LockFreeInMemoryBenchmark.BenchmarkState benchmarkState) {
-        benchmarkState.inMemoryTraceRepository.add(Collections.<String, Object>singletonMap("foo", "bar"));
+        benchmarkState.inMemoryTraceRepository.add(MainBenchmark.TRACE_INFO);
     }
 
     @Benchmark
