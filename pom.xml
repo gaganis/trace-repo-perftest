@@ -34,11 +34,11 @@ THE POSSIBILITY OF SUCH DAMAGE.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.giorgosgaganis.sbjmh</groupId>
-    <artifactId>test-lock-free</artifactId>
+    <artifactId>trace-repo-perftest</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>JMH benchmark sample: Java</name>
+    <name>JMH benchmarks for Spring Boot's In Memory Trace Repository candidate implementations</name>
 
     <!--
        This is the demo/sample template build script for building Java benchmarks with JMH.

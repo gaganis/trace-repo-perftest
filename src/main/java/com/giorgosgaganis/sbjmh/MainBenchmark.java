@@ -3,6 +3,9 @@ package com.giorgosgaganis.sbjmh;
 import java.util.Collections;
 import java.util.Map;
 
+import com.giorgosgaganis.sbjmh.noncontention.BlockingInMemoryNoContentionBenchmark;
+import com.giorgosgaganis.sbjmh.noncontention.CircularBufferNoContentionBenchmark;
+import com.giorgosgaganis.sbjmh.noncontention.LockFreeNoContentionBenchmark;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -20,6 +23,9 @@ public class MainBenchmark {
 				.include(BlockingInMemoryBenchmark.class.getSimpleName())
 				.include(LockFreeInMemoryBenchmark.class.getSimpleName())
 				.include(CircularBufferInMemoryBenchmark.class.getSimpleName())
+				.include(BlockingInMemoryNoContentionBenchmark.class.getSimpleName())
+				.include(LockFreeNoContentionBenchmark.class.getSimpleName())
+				.include(CircularBufferNoContentionBenchmark.class.getSimpleName())
 				.warmupIterations(5)
 				.measurementIterations(5)
 				.threads(4)
